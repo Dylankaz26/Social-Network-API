@@ -79,7 +79,7 @@ module.exports = {
       }
 
       const thought = await Thought.findOneAndUpdate(
-        { users: req.params.usersId },
+        { users: req.params.userId },
         { $pull: { userss: req.params.userId } },
         { new: true }
       );
@@ -121,11 +121,11 @@ module.exports = {
     }
   },
   // Remove reaction from a user
-  async this.removeReaction(req, res) {
+  async removeReaction(req, res) {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $pull: { reaction: { reactionId: req.params.reactionId } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 
